@@ -50,14 +50,15 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         # 
+    # PL_BRANCH_CHAR=$'\ue0a0'         # 
+    PL_BRANCH_CHAR=$'שׂ'
   }
   local ref dirty mode repo_path
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     repo_path=$(git rev-parse --git-dir 2>/dev/null)
     dirty=$(parse_git_dirty)
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="┌>$(git rev-parse --short HEAD 2> /dev/null)"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref=" $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
@@ -96,7 +97,7 @@ prompt_dir() {
 # - was there an error
 prompt_status() {
   local -a symbols
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}$RETVAL"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}ﲅ " # or 
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
