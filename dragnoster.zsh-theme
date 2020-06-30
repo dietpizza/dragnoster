@@ -96,7 +96,7 @@ prompt_dir() {
 # - was there an error
 prompt_status() {
   local -a symbols
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}ﲅ" # or 
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}" # or 
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
